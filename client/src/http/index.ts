@@ -2,11 +2,11 @@ import axios from "axios";
 import keycloak from "../keycloak.ts";
 
 const $api = axios.create({
-    baseURL: "http://localhost:8083/api"
+    baseURL: "https://api.impulz.online/api"
 })
 
 const $authApi = axios.create({
-    baseURL: "http://localhost:8083/api"
+    baseURL: "https://api.impulz.online/api"
 })
 
 $authApi.interceptors.request.use((config) => {

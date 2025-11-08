@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
     private static final String[] WHITE_LIST = {
             "/", "/login-success",
             "/albums/Recommendations/**",
@@ -63,7 +64,10 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:3000"));
+        config.setAllowedOrigins(List.of(
+                "https://cli.impulz.online",   // ✅ твой фронт
+                "https://api.impulz.online"    // ✅ сам backend (на случай прямых запросов)
+        ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept", "Origin"));
         config.setExposedHeaders(List.of("Authorization", "Content-Type"));
@@ -78,9 +82,13 @@ public class SecurityConfig {
     private Converter<Jwt, ? extends AbstractAuthenticationToken> jwtAuthenticationConverter() {
         JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
         converter.setJwtGrantedAuthoritiesConverter(jwt -> {
-            List<String> roles = jwt.getClaimAsMap("realm_access") != null
-                    ? ((List<String>) ((Map<String, Object>) jwt.getClaim("realm_access")).get("roles"))
-                    : List.of();
+            Map<String, Object> realmAccess = jwt.getClaimAsMap("realm_access");
+            if (realmAccess == null || realmAccess.get("roles") == null) {
+                return List.of();
+            }
+
+            @SuppressWarnings("unchecked")
+            List<String> roles = (List<String>) realmAccess.get("roles");
 
             return roles.stream()
                     .map(role -> "ROLE_" + role)

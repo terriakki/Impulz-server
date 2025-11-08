@@ -76,12 +76,14 @@ services:
       KC_DB_PASSWORD: root
 
       KEYCLOAK_ADMIN: impulzadmin
-      KEYCLOAK_ADMIN_PASSWORD: "9GZl5p4KV6ZKOUnH'c0B,f%kMah2"
+      KEYCLOAK_ADMIN_PASSWORD: "9GZl5p4KV6ZKOUnHc0B,f%kMah2"
 
+      KC_HTTP_ENABLED: true
+      KC_PROXY_HEADERS: xforwarded
+      KC_PROXY: edge
       KC_HOSTNAME: auth.impulz.online
       KC_HOSTNAME_STRICT_HTTPS: false
-      KC_HOSTNAME_STRICT: true
-      KC_PROXY: edge            # залишаємо як env (не CLI)
+      KC_HOSTNAME_STRICT: false
       KC_HTTP_PORT: 8080
       KC_HTTPS_PORT: 8443
       VIRTUAL_HOST: auth.impulz.online
@@ -93,11 +95,6 @@ services:
 
     command:
       - start
-      - --http-enabled=true
-      - --http-port=8080
-      - --proxy-headers=xforwarded
-      - --hostname=auth.impulz.online
-      - --hostname-strict=false
       - --import-realm
 
     expose:

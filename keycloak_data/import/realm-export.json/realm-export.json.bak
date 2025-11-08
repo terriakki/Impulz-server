@@ -757,19 +757,19 @@
       "clientId": "ImpulzClient",
       "name": "",
       "description": "",
-      "rootUrl": "https://impulz.online",
-      "adminUrl": "https://impulz.online",
+      "rootUrl": "http://localhost:3000",
+      "adminUrl": "http://localhost:3000",
       "baseUrl": "",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://impulz.online/*",
-        "https://api.impulz.online/api/login-success"
+        "http://localhost:3000/*",
+        "http://localhost:8083/api/login-success"
       ],
       "webOrigins": [
-        "https://impulz.online"
+        "http://localhost:3000"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -816,8 +816,8 @@
       "clientId": "ImpulzServer",
       "name": "",
       "description": "",
-      "rootUrl": "https://api.impulz.online",
-      "adminUrl": "https://api.impulz.online",
+      "rootUrl": "http://localhost:8083",
+      "adminUrl": "http://localhost:8083",
       "baseUrl": "",
       "surrogateAuthRequired": false,
       "enabled": true,
@@ -825,10 +825,10 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://api.impulz.online/*"
+        "http://localhost:8083/*"
       ],
       "webOrigins": [
-        "https://api.impulz.online"
+        "http://localhost:8083"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -846,7 +846,7 @@
         "client.secret.creation.time": "1754911172",
         "backchannel.logout.session.required": "true",
         "frontchannel.logout.session.required": "true",
-        "post.logout.redirect.uris": "https://api.impulz.online/*",
+        "post.logout.redirect.uris": "http://localhost:8083/*",
         "display.on.consent.screen": "false",
         "oauth2.device.authorization.grant.enabled": "false",
         "backchannel.logout.revoke.offline.tokens": "false"

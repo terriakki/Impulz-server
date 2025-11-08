@@ -7,13 +7,13 @@ spring:
     oauth2:
       resource-server:
         jwt:
-          jwk-set-uri: http://keycloak:8080/realms/Impulz/protocol/openid-connect/certs
+          jwk-set-uri: https://auth.impulz.online/realms/Impulz/protocol/openid-connect/certs
   data:
     redis:
       host: redis
 
 keycloak:
-  keycloakUrl: http://keycloak:8080
+  keycloakUrl: https://auth.impulz.online
 
 logging:
   level:
